@@ -66,13 +66,13 @@
   roles:
   - { role: cassandra, tags: ['cassandra'] }
 
-- name: OpcCenter installation
-  hosts: all_cassandra_nodes
-  user: install_user
-  sudo: yes
-  environment: "{{ proxy_env }}"
-  roles:
-  - { role: opscenter, tags: ['opscenter'], when: install_version == "dse" and (opscenter_enabled | default(false)) == "true"  }
+# - name: OpcCenter installation
+#   hosts: all_cassandra_nodes
+#   user: install_user
+#   sudo: yes
+#   environment: "{{ proxy_env }}"
+#   roles:
+#   - { role: opscenter, tags: ['opscenter'], when: install_version == "dse" and (opscenter_enabled | default(false)) == "true"  }
 
 - name: Cassandra cron install
   hosts: cassandra_nodes
@@ -82,12 +82,12 @@
   roles:
   - { role: cassandra_cron, tags: ['cron'] }
 
-- name: Spark install
-  hosts: 
-    - spark_master_nodes
-    - cassandra_nodes
-  user: install_user
-  sudo: yes
-  environment: "{{ proxy_env }}"
-  roles:
-  - { role: spark, tags: ['spark'], when: install_version == "dce" and (spark_enabled | default(false)) == "true" }
+# - name: Spark install
+#   hosts: 
+#     - spark_master_nodes
+#     - cassandra_nodes
+#   user: install_user
+#   sudo: yes
+#   environment: "{{ proxy_env }}"
+#   roles:
+#   - { role: spark, tags: ['spark'], when: install_version == "dce" and (spark_enabled | default(false)) == "true" }
